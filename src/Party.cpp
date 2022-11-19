@@ -1,5 +1,6 @@
 #include "Party.h"
 
+
 Party::Party(int id, string name, int mandates, JoinPolicy *jp) :
 mId(id), mName(name), mMandates(mandates), mJoinPolicy(jp), mState(Waiting)
 {
@@ -33,8 +34,15 @@ void Party::step(Simulation &s)
     switch(mState){
         case Waiting:
             // do nothing, The simulation will change your state to collecting offers when you receive one.
+            if(!offers.empty()){
+                timer = 0 ;
+                mState = CollectingOffers;
+            }
             break;
         case CollectingOffers:
+            if(++timer == 4){
+                // choose using joinPolicy and change your state to joined.
+            }
             //increase your timer by 1, if it is equal to 4, you need to choose a coalition.
             // choose using JoinPolicy and update fields : mState = Joined.
             // clone the agent that made you the offer by invoking agent's copy constructor, and set him the following fields:
@@ -42,6 +50,7 @@ void Party::step(Simulation &s)
             // Remove yourself from all agents if JOINED, remove yourself from your offering agent (? maybe should be done on agent level)
             break;
         case Joined:
+            std::cout << "I have a boyfriend :)";
             //
             break;
 
@@ -49,6 +58,12 @@ void Party::step(Simulation &s)
 
     }
 }
+
+void Party::addToOffersList(int agentID) {
+    offers.push_back(agentID);
+}
+
+
 
 
 

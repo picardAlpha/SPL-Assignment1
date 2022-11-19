@@ -38,3 +38,16 @@ const vector<vector<int>> Simulation::getPartiesByCoalitions() const
     // TODO: you MUST implement this method for getting proper output, read the documentation above.
     return vector<vector<int>>();
 }
+
+
+//added
+
+Graph &Simulation::getGraph()
+{
+    return mGraph;
+}
+
+ vector<Agent> &Simulation::getAgents()
+{
+    return mAgents;
+}

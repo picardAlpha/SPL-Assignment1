@@ -1,0 +1,69 @@
+[
+    {
+        "agents": [
+            {
+                "id": 0,
+                "partyId": 0
+            }
+        ],
+        "coalitions": [],
+        "edges": [
+            {
+                "from": 0,
+                "to": 1,
+                "weight": 1
+            },
+            {
+                "from": 1,
+                "to": 0,
+                "weight": 1
+            },
+            {
+                "from": 1,
+                "to": 2,
+                "weight": 1
+            },
+            {
+                "from": 2,
+                "to": 1,
+                "weight": 1
+            },
+            {
+                "from": 2,
+                "to": 3,
+                "weight": 1
+            },
+            {
+                "from": 3,
+                "to": 2,
+                "weight": 1
+            }
+        ],
+        "parties": [
+            {
+                "id": 0,
+                "mandates": 25,
+                "name": "Arctic Monkeys",
+                "state": "Joined"
+            },
+            {
+                "id": 1,
+                "mandates": 25,
+                "name": "Muse",
+                "state": "Waiting"
+            },
+            {
+                "id": 2,
+                "mandates": 25,
+                "name": "Twenty One Pilots",
+                "state": "Waiting"
+            },
+            {
+                "id": 3,
+                "mandates": 45,
+                "name": "Foo Fighters",
+                "state": "Waiting"
+            }
+        ]
+    }
+]

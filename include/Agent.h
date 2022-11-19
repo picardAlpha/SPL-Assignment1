@@ -2,6 +2,7 @@
 
 #include <vector>
 #include "Graph.h"
+#include "Simulation.h"
 
 class SelectionPolicy;
 
@@ -14,11 +15,12 @@ public:
     int getId() const;
     void step(Simulation &);
     //added
-    vector<int> offered;
+    vector<int> alreadyOffered;
     vector<int> mCoalitionMembers;
     void setCoalitionMandates(int mandates);
     vector<int> mRelevantNeighbors;
     void setRelevantNeighbors(vector<int>& relevantNeighbors);
+    void addToRelevantNeighbors(int partyID);
 
 private:
     int mAgentId;

@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <iostream>
 
 using std::string;
 
@@ -25,12 +26,16 @@ public:
     void step(Simulation &s);
     const string &getName() const;
 
+    //added
+    void addToOffersList(int agentID);
+
 private:
     int mId;
     string mName;
     int mMandates;
     JoinPolicy *mJoinPolicy;
     State mState;
+    int timer;
 
     //added
 
