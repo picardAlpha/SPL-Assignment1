@@ -1,7 +1,23 @@
 #pragma once
+#include <vector>
+#include "Simulation.h"
 
-class JoinPolicy {};
+class JoinPolicy {
 
-class MandatesJoinPolicy : public JoinPolicy {};
+public:
+    virtual int select(Simulation& simulation, vector<int>& offerList) {
+        return -1;
+    }
+};
 
-class LastOfferJoinPolicy : public JoinPolicy {};
+class MandatesJoinPolicy : public JoinPolicy {
+public:
+    virtual int select(Simulation& simulation, vector<int>& offerList) override;
+
+};
+
+class LastOfferJoinPolicy : public JoinPolicy {
+public:
+    virtual int select(Simulation& simulation, vector<int>& offerList) override;
+
+};

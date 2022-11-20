@@ -2,6 +2,7 @@
 #include <vector>
 #include "Party.h"
 
+
 using std::vector;
 
 class Graph
@@ -20,3 +21,4 @@ private:
     vector<Party> mVertices;
     vector<vector<int>> mEdges;
 };
+

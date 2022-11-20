@@ -4,18 +4,21 @@
 #include "SelectionPolicy.h"
 #include <iostream>
 
-Agent::Agent(int agentId, int partyId, SelectionPolicy *selectionPolicy) : mAgentId(agentId), mPartyId(partyId), mSelectionPolicy(selectionPolicy)
+Agent::Agent(int agentId, int partyId, SelectionPolicy *selectionPolicy) : mCoalitionNumber{agentId}, mAgentId(agentId), mPartyId(partyId), mSelectionPolicy(selectionPolicy)
 {
+    //put myself as a coalition member
+    mCoalitionMembers.push_back(agentId);
     // You can change the implementation of the constructor, but not the signature!
 }
 
-Agent::Agent(const Agent& otherAgent, int yourNewPartyID, int yourPartyMandates, int otherCoalitionMandates, int newID,SelectionPolicy* selectionPolicy ):
+Agent::Agent(const Agent& otherAgent, int yourNewPartyID, int newID):
         alreadyOffered{otherAgent.alreadyOffered},
         mCoalitionMembers{otherAgent.mCoalitionMembers},
+        mCoalitionNumber{otherAgent.mCoalitionNumber},
+        mCoalitionMandates{otherAgent.mCoalitionMandates},
         mAgentId{newID},
         mPartyId{yourNewPartyID},
-        mSelectionPolicy{selectionPolicy},
-        mCoalitionMandates{yourPartyMandates+otherCoalitionMandates}
+        mSelectionPolicy{otherAgent.mSelectionPolicy}
         {
 
         }

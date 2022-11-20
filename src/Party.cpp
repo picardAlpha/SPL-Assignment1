@@ -1,5 +1,5 @@
 #include "Party.h"
-
+#include "JoinPolicy.h"
 
 Party::Party(int id, string name, int mandates, JoinPolicy *jp) :
 mId(id), mName(name), mMandates(mandates), mJoinPolicy(jp), mState(Waiting)
@@ -42,6 +42,15 @@ void Party::step(Simulation &s)
         case CollectingOffers:
             if(++timer == 4){
                 // choose using joinPolicy and change your state to joined.
+                int agentToAccept = mJoinPolicy->select(s,offers);
+                s.addAgent(s.getAgents().at(agentToAccept), mId);
+                // updates the offering agent's coalition mandates.
+                s.getAgents().at(agentToAccept).setCoalitionMandates(s.getAgents().at(agentToAccept).mCoalitionMandates + mMandates); //Optimize
+                s.addAgent(s.getAgents().at(agentToAccept),mId);
+                mState = Joined;
+
+
+
             }
             //increase your timer by 1, if it is equal to 4, you need to choose a coalition.
             // choose using JoinPolicy and update fields : mState = Joined.

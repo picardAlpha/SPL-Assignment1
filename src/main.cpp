@@ -37,7 +37,7 @@ int main(int argc, char **argv)
 //        }
 
 
-    // For each agents, add all relevant neighbors to its neighbor array.
+    // For each agent, add all relevant neighbors to its neighbor array.
     for(Agent& agent : simulation.getAgents()) {
         for (int j = 0; j < simulation.getGraph().getNumVertices();j++) {
             if(simulation.getGraph().getEdgeWeight(agent.getPartyId(),j)>0 &&

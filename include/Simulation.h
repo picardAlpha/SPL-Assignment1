@@ -25,6 +25,8 @@ public:
     Graph &getGraph();
 
     vector<Agent> &getAgents();
+    void addAgent(Agent &agentToBeCopied, int newlyJoinedPartyID);
+
 
 private:
     Graph mGraph;

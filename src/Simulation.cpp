@@ -36,8 +36,17 @@ const Party &Simulation::getParty(int partyId) const
 const vector<vector<int>> Simulation::getPartiesByCoalitions() const
 {
     // TODO: you MUST implement this method for getting proper output, read the documentation above.
-    return vector<vector<int>>();
-}
+    vector<vector<int>> coalitionVector;
+    for(int i=0; i<getAgents().size(); i++){
+           coalitionVector.push_back(getAgents().at(i).mCoalitionMembers);
+        }
+
+    return coalitionVector;
+    }
+
+
+   // return vector<vector<int>>();
+
 
 
 //added
@@ -50,4 +59,30 @@ Graph &Simulation::getGraph()
  vector<Agent> &Simulation::getAgents()
 {
     return mAgents;
+}
+
+void Simulation::addAgent(Agent& agentToBeCopied, int newlyJoinedPartyID) {
+    ///NEEDS TO BE IMPLEMENTED
+    int newID = mAgents.size();
+    Agent newAgent {agentToBeCopied,newlyJoinedPartyID,newID};
+    // Add the new party mandates to the coalition
+    newAgent.mCoalitionMandates = agentToBeCopied.mCoalitionMandates + getParty(newlyJoinedPartyID).getMandates();
+    newAgent.mRelevantNeighbors.clear();
+
+    //initialize neighbors list.
+    for (int j = 0; j < getGraph().getNumVertices();j++) {
+        if(getGraph().getEdgeWeight(newAgent.getPartyId(),j)>0 &&
+           getParty(j).getState() != Joined){
+            newAgent.addToRelevantNeighbors(j);
+        }
+    }
+    mAgents.push_back(newAgent);
+    // Update all my coalition members I have joined!
+    for(Agent agent : getAgents()){
+        if(agent.mCoalitionNumber == newAgent.mCoalitionNumber){
+            agent.mCoalitionMembers.push_back(newAgent.getId());
+            agent.mCoalitionNumber = newAgent.mCoalitionMandates;
+        }
+    }
+
 }

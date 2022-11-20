@@ -25,8 +25,6 @@ int MandatesSelectionPolicy::select(Graph &graph, vector<int> &relevantNeighbors
 
 }
 
-
-
 // ASSUMES RelevantNeighbors vector ISN'T EMPTY!!!
 int EdgeWeightSelectionPolicy::select(Graph &graph, vector<int> &relevantNeighbors,int partyID) {
 

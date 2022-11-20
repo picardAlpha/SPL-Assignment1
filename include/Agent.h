@@ -15,21 +15,21 @@ public:
     int getId() const;
     void step(Simulation &);
     //added
-    vector<int> alreadyOffered;
-    vector<int> mCoalitionMembers;
+    std::vector<int> alreadyOffered;
+    std::vector<int> mCoalitionMembers;
+    int mCoalitionNumber;
     void setCoalitionMandates(int mandates);
-    vector<int> mRelevantNeighbors;
-    void setRelevantNeighbors(vector<int>& relevantNeighbors);
+    std::vector<int> mRelevantNeighbors;
+    void setRelevantNeighbors(std::vector<int>& relevantNeighbors);
     void addToRelevantNeighbors(int partyID);
+    int mCoalitionMandates;
+    // A constructor to be used when cloning an agent to a new party.
+    Agent(const Agent& otherAgent, int yourNewPartyID, int newID );
 
 private:
     int mAgentId;
     int mPartyId;
     SelectionPolicy *mSelectionPolicy;
-    int mCoalitionMandates;
 
-    // A constructor to be used when cloning an agent to a new party.
-    // we set the
-    Agent(const Agent& otherAgent, int yourNewPartyID, int yourPartyMandates, int otherCoalitionMandates, int newID,SelectionPolicy* selectionPolicy );
 
 };
