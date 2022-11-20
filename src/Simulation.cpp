@@ -12,8 +12,13 @@ void Simulation::step()
 
 bool Simulation::shouldTerminate() const
 {
-    // TODO implement this method
-    return true;
+    bool result = false;
+    for(int i=0; i<mAgents.size() && !result; i++){
+        if(getAgents().at(i).mCoalitionMandates>60) {
+            result = true;
+        }
+    }
+    return result;
 }
 
 const Graph &Simulation::getGraph() const
