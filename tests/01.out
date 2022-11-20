@@ -10,7 +10,20 @@
                 "partyId": 3
             }
         ],
-        "coalitions": [],
+        "coalitions": [
+            {
+                "mandates": 50,
+                "parties": [
+                    0
+                ]
+            },
+            {
+                "mandates": 30,
+                "parties": [
+                    1
+                ]
+            }
+        ],
         "edges": [
             {
                 "from": 0,

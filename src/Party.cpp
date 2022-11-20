@@ -40,7 +40,8 @@ void Party::step(Simulation &s)
             }
             break;
         case CollectingOffers:
-            if(++timer == 4){
+            timer++;
+            if(timer == 4){
                 // choose using joinPolicy and change your state to joined.
                 int agentToAccept = mJoinPolicy->select(s,offers);
                 s.addAgent(s.getAgents().at(agentToAccept), mId);
