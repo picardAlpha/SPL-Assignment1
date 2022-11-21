@@ -16,7 +16,7 @@ int MandatesSelectionPolicy::select(Graph &graph, vector<int> &relevantNeighbors
 
     for(int i=0; i<relevantNeighbors.size(); i++){
         if(graph.getMandates(relevantNeighbors.at(i))>max){
-            max=graph.getMandates(relevantNeighbors.at(i));
+            max = graph.getMandates(relevantNeighbors.at(i));
             maxIndex = i ;
         }
     }

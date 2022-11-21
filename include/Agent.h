@@ -26,6 +26,8 @@ public:
     // A constructor to be used when cloning an agent to a new party.
     Agent(const Agent& otherAgent, int yourNewPartyID, int newID );
 
+    bool isPresent(vector<int>& neighborsList, int num);
+
 private:
     int mAgentId;
     int mPartyId;

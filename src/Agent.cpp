@@ -43,7 +43,7 @@ void Agent::step(Simulation &sim)
     // First update you relevant neighbors list. It can only shrink, so you only need to check its members.
     for(int i=0; i<mRelevantNeighbors.size(); i++){
         if(sim.getParty(mRelevantNeighbors.at(i)).getState() == Joined ||
-                std::count(alreadyOffered.begin(), alreadyOffered.end(),mRelevantNeighbors.at(i)) ) { //////REVISE!!!
+                isPresent(alreadyOffered, mRelevantNeighbors.at(i)) ) { //////REVISE!!!
             mRelevantNeighbors.erase(mRelevantNeighbors.begin()+i);
         }
     }
@@ -97,6 +97,19 @@ void Agent::setRelevantNeighbors(vector<int>& relevantNeighbors){
 
 void Agent::addToRelevantNeighbors(int partyID){
     mRelevantNeighbors.push_back(partyID);
+
+}
+
+bool Agent::isPresent(vector<int> &neighborsList, int num) {
+    bool found = false;
+    for(int i=0; i<neighborsList.size() && !found;i++){
+        if(neighborsList.at(i) == num){
+            found = true;
+        }
+    }
+
+    return found;
+
 
 }
 
