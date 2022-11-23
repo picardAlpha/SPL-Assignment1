@@ -1,6 +1,6 @@
 
-#include "Agent.h"
-#include "Party.h"
+#include "../include/Agent.h"
+#include "../include/Party.h"
 #include "SelectionPolicy.h"
 #include <iostream>
 

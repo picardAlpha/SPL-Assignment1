@@ -1,5 +1,5 @@
-#include "Party.h"
-#include "JoinPolicy.h"
+#include "../include/Party.h"
+#include "../include/JoinPolicy.h"
 
 Party::Party(int id, string name, int mandates, JoinPolicy *jp) :
 mId(id), mName(name), mMandates(mandates), mJoinPolicy(jp), mState(Waiting)

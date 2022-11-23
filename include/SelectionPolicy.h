@@ -1,5 +1,5 @@
 #pragma once
-#include "Graph.h"
+#include "../include/Graph.h"
 
 
 class SelectionPolicy { ;

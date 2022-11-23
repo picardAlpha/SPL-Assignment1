@@ -1,7 +1,7 @@
 //
 // Created by Lidor Nir Shalom on 20/11/2022.
 //
-#include "JoinPolicy.h"
+#include "../include/JoinPolicy.h"
 
 
 int MandatesJoinPolicy::select(Simulation& simulation, vector<int> &offeringAgentsIDList) {

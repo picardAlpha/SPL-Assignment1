@@ -1,8 +1,8 @@
 #pragma once
 
 #include <vector>
-#include "Graph.h"
-#include "Simulation.h"
+#include "../include/Graph.h"
+#include "../include/Simulation.h"
 
 class SelectionPolicy;
 

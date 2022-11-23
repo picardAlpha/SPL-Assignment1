@@ -5,7 +5,7 @@
 
 // Will receive graph as reference and vector of relevant neighbors from agent and return the max value according to the type.
 
-#include "SelectionPolicy.h"
+#include "../include/SelectionPolicy.h"
 
 //SHOULD I ADD SELECTIONPOLICY:: ??
 

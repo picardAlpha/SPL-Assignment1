@@ -1,4 +1,4 @@
-#include "Simulation.h"
+#include "../include/Simulation.h"
 
 Simulation::Simulation(Graph graph, vector<Agent> agents) : mGraph(graph), mAgents(agents) 
 {
@@ -46,10 +46,10 @@ const Party &Simulation::getParty(int partyId) const
 
 /// This method returns a "coalition" vector, where each element is a vector of party IDs in the coalition.
 /// At the simulation initialization - the result will be [[agent0.partyId], [agent1.partyId], ...]
-const vector<vector<int>> Simulation::getPartiesByCoalitions() const
+const vector< vector < int > > Simulation::getPartiesByCoalitions() const
 {
     // TODO: you MUST implement this method for getting proper output, read the documentation above.
-    vector<vector<int>> coalitionVector;
+    vector<vector<int> > coalitionVector;
     for(int i=0; i<getAgents().size(); i++){
            coalitionVector.push_back(getAgents().at(i).mCoalitionMembers);
         }
