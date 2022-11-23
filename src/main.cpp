@@ -40,6 +40,7 @@ int main(int argc, char **argv)
     // For each agent, add all relevant neighbors to its neighbor array.
     for(Agent& agent : simulation.getAgents()) {
         for (int j = 0; j < simulation.getGraph().getNumVertices();j++) {
+            cout << agent.getId();
             if(simulation.getGraph().getEdgeWeight(agent.getPartyId(),j)>0 &&
                 simulation.getParty(j).getState() != Joined){
                 agent.addToRelevantNeighbors(j);
@@ -62,7 +63,7 @@ int main(int argc, char **argv)
     outputFile << std::setw(4) << json(outPerIter) << endl;
 
 
-    // TESTS
+//     // TESTS
 
         for(int i=0; i<simulation.getAgents().size();i++){
             cout << "The relevant neighbors of agent " << i <<" who belongs to party "<< simulation.getAgents().at(i).getPartyId() <<" are:" << endl;

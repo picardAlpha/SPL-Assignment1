@@ -7,7 +7,7 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "${file}",
+                "${file}","${fileDirname}/Agent.cpp","${fileDirname}/Graph.cpp","${fileDirname}/JoinPolicy.cpp","${fileDirname}/Parser.cpp","${fileDirname}/Party.cpp","${fileDirname}/SelectionPolicy.cpp","${fileDirname}/Simulation.cpp",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
             ],

@@ -1,7 +1,7 @@
 
 #include "../include/Agent.h"
 #include "../include/Party.h"
-#include "SelectionPolicy.h"
+#include "../include/SelectionPolicy.h"
 #include <iostream>
 
 Agent::Agent(int agentId, int partyId, SelectionPolicy *selectionPolicy) : mCoalitionNumber{agentId}, mAgentId(agentId), mPartyId(partyId), mSelectionPolicy(selectionPolicy)
