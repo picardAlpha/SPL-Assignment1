@@ -2,7 +2,7 @@
 #include "../include/JoinPolicy.h"
 
 Party::Party(int id, string name, int mandates, JoinPolicy *jp) :
-mId(id), mName(name), mMandates(mandates), mJoinPolicy(jp), mState(Waiting)
+mId(id), mName(name), mMandates(mandates), mJoinPolicy(jp), mState(Waiting), timer(0)
 {
     // You can change the implementation of the constructor, but not the signature!
 }
@@ -35,16 +35,16 @@ void Party::step(Simulation &s)
         case Waiting:
             // do nothing, The simulation will change your state to collecting offers when you receive one.
             if(!offers.empty()){
-                timer = 0 ;
+                timer = 0 ; // BUG : Timer isn't always initialized
                 mState = CollectingOffers;
             }
             break;
         case CollectingOffers:
             timer++;
-            if(timer == 4){
+            if(timer > 2){
                 // choose using joinPolicy and change your state to joined.
                 int agentToAccept = mJoinPolicy->select(s,offers);
-                s.addAgent(s.getAgents().at(agentToAccept), mId);
+                s.addAgent(s.getAgents().at(agentToAccept), mId);  // Clones Agent
                 // updates the offering agent's coalition mandates.
                 s.getAgents().at(agentToAccept).setCoalitionMandates(s.getAgents().at(agentToAccept).mCoalitionMandates + mMandates); //Optimize
                 s.addAgent(s.getAgents().at(agentToAccept),mId);
@@ -60,8 +60,11 @@ void Party::step(Simulation &s)
             // Remove yourself from all agents if JOINED, remove yourself from your offering agent (? maybe should be done on agent level)
             break;
         case Joined:
-            std::cout << "I have a boyfriend :)";
+            
             //
+            break;
+
+            default:
             break;
 
 

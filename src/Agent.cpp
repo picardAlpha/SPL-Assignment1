@@ -41,39 +41,41 @@ void Agent::step(Simulation &sim)
 {
     // TODO: implement this method
     // First update you relevant neighbors list. It can only shrink, so you only need to check its members.
-    for(int i=0; i<mRelevantNeighbors.size(); i++){
-        if(sim.getParty(mRelevantNeighbors.at(i)).getState() == Joined ||
-                isPresent(alreadyOffered, mRelevantNeighbors.at(i)) ) { //////REVISE!!!
-            mRelevantNeighbors.erase(mRelevantNeighbors.begin()+i);
-        }
-    }
+    // for(int i=0; i<mRelevantNeighbors.size(); i++){
+    //     std::cout << "relevant neighboor no " << i << " is " << mRelevantNeighbors.at(i) <<std::endl; 
+    //     if(sim.getParty(mRelevantNeighbors.at(i)).getState() == Joined ||
+    //         isPresent(alreadyOffered, mRelevantNeighbors.at(i)) ) { //////REVISE!!!
+    //             mRelevantNeighbors.erase(mRelevantNeighbors.begin()+i);
+    //     }
+    // }
     if(!mRelevantNeighbors.empty()) {
-        int partyToOfferID = mSelectionPolicy->select(sim.getGraph(), mRelevantNeighbors, mPartyId);
+        int partyToOfferIndex = mSelectionPolicy->select(sim.getGraph(), mRelevantNeighbors, mPartyId);
 
-        Party &partyToOffer = sim.getGraph().getParty(partyToOfferID);
+        Party &partyToOffer = sim.getGraph().getParty(mRelevantNeighbors.at(partyToOfferIndex));
         switch (partyToOffer.getState()) {
+            
             //Debate weather to give the agent control over party, or design her to maintain herself.
             case Waiting:
                 // This could be changed to adding to the offers array in party, and the party herself checking each iteration if the array isn't empty and changing her status.
                 partyToOffer.setState(CollectingOffers);
                 partyToOffer.addToOffersList(mAgentId);
-                alreadyOffered.push_back(partyToOfferID);
+                alreadyOffered.push_back(mRelevantNeighbors.at(partyToOfferIndex));
 
 
                 break;
             case CollectingOffers:
                 partyToOffer.addToOffersList(mAgentId);
-                alreadyOffered.push_back(partyToOfferID);
+                alreadyOffered.push_back(mRelevantNeighbors.at(partyToOfferIndex));
 
 
                 break;
             case Joined:
-                std::cout << "Something went wrong... Agent no. " << mAgentId << "who belongs to party " << mPartyId
-                          << " trying to add party no. " << partyToOfferID
-                          << "to its coalition, but it's already in a Joined state.";
+                std::cout << "Something went wrong... Agent no." << mAgentId << " who belongs to party " << mPartyId
+                          << " trying to add party no. " << mRelevantNeighbors.at(partyToOfferIndex)
+                          << "to its coalition, but it's already in a Joined state." << std::endl;
 
             default :
-                std::cout << "Unidentified Party State.";
+                std::cout << "Unidentified Party State." << std::endl;
                 break;
 
         }
@@ -110,9 +112,7 @@ bool Agent::isPresent(vector<int> &neighborsList, int num) {
 
     return found;
 
-
 }
-
 
 
 

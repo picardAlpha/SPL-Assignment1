@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include "../include/Parser.h"
+#include "../include/Agent.h"
 
 using std::cout;
 using std::endl;
@@ -37,10 +38,11 @@ int main(int argc, char **argv)
 //        }
 
 
-    // For each agent, add all relevant neighbors to its neighbor array.
+    // For each agent, add all relevant neighbors to its neighbor array. and set its initial coalition mandates.
     for(Agent& agent : simulation.getAgents()) {
+        agent.setCoalitionMandates(simulation.getParty(agent.getPartyId()).getMandates());  
         for (int j = 0; j < simulation.getGraph().getNumVertices();j++) {
-            cout << agent.getId();
+            cout << "Initializing agent no " <<agent.getId() << " With his weight with party " << j << endl;
             if(simulation.getGraph().getEdgeWeight(agent.getPartyId(),j)>0 &&
                 simulation.getParty(j).getState() != Joined){
                 agent.addToRelevantNeighbors(j);

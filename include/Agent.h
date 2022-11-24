@@ -28,6 +28,8 @@ public:
 
     bool isPresent(vector<int>& neighborsList, int num);
 
+    int getCoalitionMandates();
+
 private:
     int mAgentId;
     int mPartyId;

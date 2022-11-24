@@ -20,7 +20,7 @@ int MandatesSelectionPolicy::select(Graph &graph, vector<int> &relevantNeighbors
             maxIndex = i ;
         }
     }
-
+    // std::cout << "Selection Policy returned party number " << relevantNeighbors.
     return maxIndex;
 
 }
@@ -32,8 +32,9 @@ int EdgeWeightSelectionPolicy::select(Graph &graph, vector<int> &relevantNeighbo
     int maxIndex = -1 ;
 
     for(int i=0; i<relevantNeighbors.size(); i++){
-        if(graph.getEdgeWeight(partyID,relevantNeighbors.at(i)) > max){
-            max = graph.getEdgeWeight(partyID,relevantNeighbors.at(i));
+        int currEdgeWeight = graph.getEdgeWeight(partyID,relevantNeighbors.at(i));
+        if(currEdgeWeight > max){
+            max = currEdgeWeight;
             maxIndex = i;
         }
 
