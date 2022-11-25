@@ -13,7 +13,7 @@ void Simulation::step()
         getGraph().getParty(i).step(*this);
     }
 
-    for(Agent agent : mAgents){
+    for(Agent& agent : mAgents){
         agent.step(*this);
     }
 
@@ -59,8 +59,12 @@ const Party &Simulation::getParty(int partyId) const
 const vector< vector < int > > Simulation::getPartiesByCoalitions() const
 {
     // TODO: you MUST implement this method for getting proper output, read the documentation above.
+
+    // BUG: Coalitions are printed more than once!!!
     vector<vector<int> > coalitionVector;
-    for(int i=0; i<getAgents().size(); i++){
+    vector<int> alreadyAddedCoalition;
+    for(int i=0; i<getAgents().size() ; i++){
+        if(!isPresent(alreadyAddedCoalition,getAgents().at(i).mCoalitionNumber))
            coalitionVector.push_back(getAgents().at(i).mCoalitionMembers);
         }
 
@@ -90,6 +94,9 @@ void Simulation::addAgent(Agent& agentToBeCopied, int newlyJoinedPartyID) {
     Agent newAgent {agentToBeCopied,newlyJoinedPartyID,newID};
     // Add the new party mandates to the coalition
     newAgent.mCoalitionMandates = agentToBeCopied.mCoalitionMandates + getParty(newlyJoinedPartyID).getMandates();
+    agentToBeCopied.mCoalitionMandates = newAgent.mCoalitionMandates;
+    agentToBeCopied.mCoalitionMembers.push_back(newlyJoinedPartyID);
+    newAgent.mCoalitionMembers = agentToBeCopied.mCoalitionMembers;
     newAgent.mRelevantNeighbors.clear();
 
     //initialize neighbors list.
@@ -107,5 +114,19 @@ void Simulation::addAgent(Agent& agentToBeCopied, int newlyJoinedPartyID) {
             agent.mCoalitionNumber = newAgent.mCoalitionMandates;
         }
     }
+
+
+
+}
+
+bool Simulation::isPresent(vector<int> &neighborsList, int num) {
+    bool found = false;
+    for (int i = 0; i < neighborsList.size() && !found; i++) {
+        if (neighborsList.at(i) == num) {
+            found = true;
+        }
+    }
+
+    return found;
 
 }

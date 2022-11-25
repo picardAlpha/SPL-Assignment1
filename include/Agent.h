@@ -15,7 +15,6 @@ public:
     int getId() const;
     void step(Simulation &);
     //added
-    std::vector<int> alreadyOffered;
     std::vector<int> mCoalitionMembers;
     int mCoalitionNumber;
     void setCoalitionMandates(int mandates);
@@ -29,11 +28,17 @@ public:
     bool isPresent(vector<int>& neighborsList, int num);
 
     int getCoalitionMandates();
+    void addToAlreadyOffered(int partyID);
+    std::vector<int> getAlreadyOffered();
 
 private:
     int mAgentId;
     int mPartyId;
     SelectionPolicy *mSelectionPolicy;
+
+    //added
+    std::vector<int> alreadyOffered;
+
 
 
 };

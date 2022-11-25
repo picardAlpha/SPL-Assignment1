@@ -31,14 +31,20 @@ int EdgeWeightSelectionPolicy::select(Graph &graph, vector<int> &relevantNeighbo
     int max = 0;
     int maxIndex = -1 ;
 
+    std::cout << "I'm EdgeSelectionPolicy. The array of relevant neighbors I got is : [" ;
+    for(int neighbor : relevantNeighbors){
+        std :: cout << neighbor << ", " ;
+    }
+    std::cout<<"]"<<std::endl;
     for(int i=0; i<relevantNeighbors.size(); i++){
+//        std::cout << "Iteration " << i << " for finding max edge: Now comparing party " << partyID <<" with party "<< relevantNeighbors.at(i)<<std::endl  ;
         int currEdgeWeight = graph.getEdgeWeight(partyID,relevantNeighbors.at(i));
         if(currEdgeWeight > max){
             max = currEdgeWeight;
             maxIndex = i;
         }
-
     }
+    std::cout << "EdgeSelction recommends party " << relevantNeighbors.at(maxIndex) << std::endl;
     return maxIndex;
 }
 

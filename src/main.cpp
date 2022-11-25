@@ -39,8 +39,9 @@ int main(int argc, char **argv)
 
 
     // For each agent, add all relevant neighbors to its neighbor array. and set its initial coalition mandates.
+    // added coalition members initialization ?? in constructor
     for(Agent& agent : simulation.getAgents()) {
-        agent.setCoalitionMandates(simulation.getParty(agent.getPartyId()).getMandates());  
+        agent.setCoalitionMandates(simulation.getParty(agent.getPartyId()).getMandates());
         for (int j = 0; j < simulation.getGraph().getNumVertices();j++) {
             cout << "Initializing agent no " <<agent.getId() << " With his weight with party " << j << endl;
             if(simulation.getGraph().getEdgeWeight(agent.getPartyId(),j)>0 &&
@@ -53,6 +54,17 @@ int main(int argc, char **argv)
 
     // run simulation and store json state after each iteration
     vector<json> outPerIter = {Parser::makeJson(simulation)};
+
+
+    for(int i=0; i<simulation.getAgents().size();i++){
+        cout << "The relevant neighbors of agent " << i <<" who belongs to party "<< simulation.getAgents().at(i).getPartyId() <<" are:" << endl;
+        for(int mRelevantNeighbor : simulation.getAgents().at(i).mRelevantNeighbors)
+            cout << mRelevantNeighbor << endl;
+
+
+    }
+
+
     while (!simulation.shouldTerminate())
     {
         simulation.step();
@@ -67,13 +79,7 @@ int main(int argc, char **argv)
 
 //     // TESTS
 
-        for(int i=0; i<simulation.getAgents().size();i++){
-            cout << "The relevant neighbors of agent " << i <<" who belongs to party "<< simulation.getAgents().at(i).getPartyId() <<" are:" << endl;
-            for(int j=0; j<simulation.getAgents().at(i).mRelevantNeighbors.size();j++)
-                cout << simulation.getAgents().at(i).mRelevantNeighbors.at(j) << endl;
 
-
-        }
 
     return 0;
 }

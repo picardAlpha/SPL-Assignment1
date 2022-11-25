@@ -26,6 +26,7 @@ public:
 
     vector<Agent> &getAgents();
     void addAgent(Agent &agentToBeCopied, int newlyJoinedPartyID);
+    static bool isPresent(vector<int> &neighborsList, int num);
 
 
 private:

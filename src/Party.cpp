@@ -1,4 +1,4 @@
-#include "../include/Party.h"
+    #include "../include/Party.h"
 #include "../include/JoinPolicy.h"
 
 Party::Party(int id, string name, int mandates, JoinPolicy *jp) :
@@ -37,6 +37,11 @@ void Party::step(Simulation &s)
             if(!offers.empty()){
                 timer = 0 ; // BUG : Timer isn't always initialized
                 mState = CollectingOffers;
+                std::cout << "Party " << mId<<": I have offers from agents " ;
+                for(int offer:offers){
+                    std::cout << offer << " " ;
+                }
+                std::cout << std::endl;
             }
             break;
         case CollectingOffers:
@@ -44,10 +49,11 @@ void Party::step(Simulation &s)
             if(timer > 2){
                 // choose using joinPolicy and change your state to joined.
                 int agentToAccept = mJoinPolicy->select(s,offers);
+                std::cout << "---- Party " << mId <<": I'm accepting the offer of agent number " << agentToAccept <<std::endl;
                 s.addAgent(s.getAgents().at(agentToAccept), mId);  // Clones Agent
                 // updates the offering agent's coalition mandates.
-                s.getAgents().at(agentToAccept).setCoalitionMandates(s.getAgents().at(agentToAccept).mCoalitionMandates + mMandates); //Optimize
-                s.addAgent(s.getAgents().at(agentToAccept),mId);
+//                s.getAgents().at(agentToAccept).setCoalitionMandates(s.getAgents().at(agentToAccept).mCoalitionMandates + mMandates); //Optimize
+//                s.addAgent(s.getAgents().at(agentToAccept),mId);
                 mState = Joined;
 
 

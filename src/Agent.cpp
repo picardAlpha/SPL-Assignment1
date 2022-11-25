@@ -7,18 +7,18 @@
 Agent::Agent(int agentId, int partyId, SelectionPolicy *selectionPolicy) : mCoalitionNumber{agentId}, mAgentId(agentId), mPartyId(partyId), mSelectionPolicy(selectionPolicy)
 {
     //put myself as a coalition member
-    mCoalitionMembers.push_back(agentId);
+    mCoalitionMembers.push_back(partyId);
     // You can change the implementation of the constructor, but not the signature!
 }
 
 Agent::Agent(const Agent& otherAgent, int yourNewPartyID, int newID):
-        alreadyOffered{otherAgent.alreadyOffered},
         mCoalitionMembers{otherAgent.mCoalitionMembers},
         mCoalitionNumber{otherAgent.mCoalitionNumber},
         mCoalitionMandates{otherAgent.mCoalitionMandates},
         mAgentId{newID},
         mPartyId{yourNewPartyID},
-        mSelectionPolicy{otherAgent.mSelectionPolicy}
+        mSelectionPolicy{otherAgent.mSelectionPolicy},
+        alreadyOffered{otherAgent.alreadyOffered}
         {
 
         }
@@ -41,16 +41,28 @@ void Agent::step(Simulation &sim)
 {
     // TODO: implement this method
     // First update you relevant neighbors list. It can only shrink, so you only need to check its members.
-    // for(int i=0; i<mRelevantNeighbors.size(); i++){
-    //     std::cout << "relevant neighboor no " << i << " is " << mRelevantNeighbors.at(i) <<std::endl; 
-    //     if(sim.getParty(mRelevantNeighbors.at(i)).getState() == Joined ||
-    //         isPresent(alreadyOffered, mRelevantNeighbors.at(i)) ) { //////REVISE!!!
-    //             mRelevantNeighbors.erase(mRelevantNeighbors.begin()+i);
-    //     }
-    // }
+     for(int i=0; i<mRelevantNeighbors.size(); i++){ // NOT ERASING ALREADY OFFERED PARTIES!
+//         std::cout << "Relevant neighbor no " << i << " is " << mRelevantNeighbors.at(i) <<std::endl;
+         std::cout << "Agent " << mAgentId << ": UPDATING. Already offered parties are : " ;
+         for(int party : alreadyOffered){
+             std::cout << party << " " ;
+         }
+         std::cout << std::endl;
+         if(sim.getParty(mRelevantNeighbors.at(i)).getState() == Joined ||
+             isPresent(alreadyOffered, mRelevantNeighbors.at(i)) ) { //////REVISE!!!
+                 mRelevantNeighbors.erase(mRelevantNeighbors.begin()+i);
+         }
+     }
     if(!mRelevantNeighbors.empty()) {
-        int partyToOfferIndex = mSelectionPolicy->select(sim.getGraph(), mRelevantNeighbors, mPartyId);
+        std::cout << "I'm agent no " << mAgentId << " Who belongs to party " << mPartyId << ". My relevant neighbors are : [" ;
+        for(int i=0 ; i<mRelevantNeighbors.size(); i++){
+            std::cout << mRelevantNeighbors.at(i) << " " ;
+        }
+        std::cout <<"]"<< std::endl;
 
+
+        int partyToOfferIndex = mSelectionPolicy->select(sim.getGraph(), mRelevantNeighbors, mPartyId);
+        std::cout << "--------Agent " << mAgentId << " offered party " << mRelevantNeighbors.at(partyToOfferIndex) <<"--------"<<std::endl;
         Party &partyToOffer = sim.getGraph().getParty(mRelevantNeighbors.at(partyToOfferIndex));
         switch (partyToOffer.getState()) {
             
@@ -59,13 +71,15 @@ void Agent::step(Simulation &sim)
                 // This could be changed to adding to the offers array in party, and the party herself checking each iteration if the array isn't empty and changing her status.
                 partyToOffer.setState(CollectingOffers);
                 partyToOffer.addToOffersList(mAgentId);
-                alreadyOffered.push_back(mRelevantNeighbors.at(partyToOfferIndex));
-
+                addToAlreadyOffered(mRelevantNeighbors.at(partyToOfferIndex));
+                std::cout << "Agent " << mAgentId<< ": I changed party "<< mRelevantNeighbors.at(partyToOfferIndex)<<" to CollectingOffers state and made the offer." <<std::endl;
 
                 break;
             case CollectingOffers:
                 partyToOffer.addToOffersList(mAgentId);
-                alreadyOffered.push_back(mRelevantNeighbors.at(partyToOfferIndex));
+                addToAlreadyOffered(mRelevantNeighbors.at(partyToOfferIndex));
+                std::cout << "Agent " << mAgentId<< ": I made an offer to party "<< mRelevantNeighbors.at(partyToOfferIndex)<<". It was already in CollectingOrders state." <<std::endl;
+
 
 
                 break;
@@ -112,6 +126,15 @@ bool Agent::isPresent(vector<int> &neighborsList, int num) {
 
     return found;
 
+}
+
+void Agent::addToAlreadyOffered(int partyID) {
+    alreadyOffered.push_back(partyID);
+
+}
+
+std::vector<int> Agent::getAlreadyOffered() {
+    return alreadyOffered;
 }
 
 
