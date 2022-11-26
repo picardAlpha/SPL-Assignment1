@@ -28,7 +28,7 @@ int MandatesSelectionPolicy::select(Graph &graph, vector<int> &relevantNeighbors
 // ASSUMES RelevantNeighbors vector ISN'T EMPTY!!!
 int EdgeWeightSelectionPolicy::select(Graph &graph, vector<int> &relevantNeighbors,int partyID) {
 
-    int max = 0;
+    int max = -1;
     int maxIndex = -1 ;
 
     std::cout << "I'm EdgeSelectionPolicy. The array of relevant neighbors I got is : [" ;

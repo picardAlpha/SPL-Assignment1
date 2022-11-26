@@ -40,6 +40,8 @@ public:
     void addToAlreadyOffered(int partyID);
 
     std::vector<int> getAlreadyOffered();
+    std::vector<int> alreadyOffered;
+
 
 private:
     int mAgentId;
@@ -47,7 +49,6 @@ private:
     SelectionPolicy *mSelectionPolicy;
 
     //added
-    std::vector<int> alreadyOffered;
 
 };
     //Ariel Added

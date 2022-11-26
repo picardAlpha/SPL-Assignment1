@@ -46,7 +46,7 @@ void Party::step(Simulation &s)
             break;
         case CollectingOffers:
             timer++;
-            if(timer > 2){
+            if(timer > 3){
                 // choose using joinPolicy and change your state to joined.
                 int agentToAccept = mJoinPolicy->select(s,offers);
                 int agentToAcceptCoalition = s.getAgents().at(agentToAccept).mCoalitionNumber;
@@ -60,6 +60,15 @@ void Party::step(Simulation &s)
 //                s.getAgents().at(agentToAccept).setCoalitionMandates(s.getAgents().at(agentToAccept).mCoalitionMandates + mMandates); //Optimize
 //                s.addAgent(s.getAgents().at(agentToAccept),mId);
                 // update my mandates
+
+
+                //TODO : Initialize the new agents relevant neighbors!
+                for(int i=0; i<s.getGraph().getNumVertices(); i++){
+                    if(s.getGraph().getEdgeWeight(s.getAgents().at(s.getAgents().size()-1).getId(),i)>0 && !s.isPresent(s.getAgents().at(s.getAgents().size()-1).alreadyOffered,i)){
+                        s.getAgents().at(s.getAgents().size()-1).mRelevantNeighbors.push_back(i);
+                    }
+
+                }
                 std::cout << "Together we have " << s.getAgents().at(agentToAccept).mCoalitionMandates << " mandates" << std::endl;
                 mState = Joined;
 
