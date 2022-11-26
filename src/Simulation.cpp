@@ -108,7 +108,7 @@ void Simulation::addAgent(Agent& agentToBeCopied, int newlyJoinedPartyID) {
     }
     mAgents.push_back(newAgent);
     // Update all my coalition members I have joined!
-    for(Agent agent : getAgents()){
+    for(Agent& agent : getAgents()){
         if(agent.mCoalitionNumber == newAgent.mCoalitionNumber){
             agent.mCoalitionMembers.push_back(newAgent.getId());
             agent.mCoalitionNumber = newAgent.mCoalitionMandates;
