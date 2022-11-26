@@ -37,6 +37,13 @@ int main(int argc, char **argv)
 //            }
 //        }
 
+//Initializing coalition vector in simulation.
+    for(int i=0; i< simulation.getAgents().size(); i++ ){
+        vector<int> coalition;
+        coalition.push_back(simulation.getAgents().at(i).getPartyId());
+        simulation.coalitions.push_back(coalition);
+
+    }
 
     // For each agent, add all relevant neighbors to its neighbor array. and set its initial coalition mandates.
     // added coalition members initialization ?? in constructor

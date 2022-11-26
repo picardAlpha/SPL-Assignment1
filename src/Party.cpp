@@ -49,11 +49,18 @@ void Party::step(Simulation &s)
             if(timer > 2){
                 // choose using joinPolicy and change your state to joined.
                 int agentToAccept = mJoinPolicy->select(s,offers);
+                int agentToAcceptCoalition = s.getAgents().at(agentToAccept).mCoalitionNumber;
                 std::cout << "---- Party " << mId <<": I'm accepting the offer of agent number " << agentToAccept <<std::endl;
+                std::cout << "I have " <<mMandates << " mandates. The offering coalition has " << s.getAgents().at(agentToAccept).mCoalitionMandates <<" mandates. ";
                 s.addAgent(s.getAgents().at(agentToAccept), mId);  // Clones Agent
+                // add myself to the proper coalition vector
+                s.coalitions.at(agentToAcceptCoalition).push_back(mId);
+
                 // updates the offering agent's coalition mandates.
 //                s.getAgents().at(agentToAccept).setCoalitionMandates(s.getAgents().at(agentToAccept).mCoalitionMandates + mMandates); //Optimize
 //                s.addAgent(s.getAgents().at(agentToAccept),mId);
+                // update my mandates
+                std::cout << "Together we have " << s.getAgents().at(agentToAccept).mCoalitionMandates << " mandates" << std::endl;
                 mState = Joined;
 
 
@@ -83,6 +90,40 @@ void Party::addToOffersList(int agentID) {
 }
 
 
+//Ariel added
+
+////Destructor
+//    Party:: ~Party(){
+//        if(mJoinPolicy) delete mJoinPolicy;
+//
+//
+//    }
+////Copy Constructor
+//    Party::Party(const Party &other){
+//        mId = other.mId;
+//        mName = other.mName;
+//        mMandates = other.mMandates;
+//        mJoinPolicy = other.mJoinPolicy;
+//        mState = other.mState;
+//    }
+////Moving Constructor
+//    Party::Party(Party &&other){
+//        mJoinPolicy = other.mJoinPolicy;
+//        delete other.mJoinPolicy;
+//    }
+////Copy Operator
+//    Party& Party::operator= (const Party& other){
+//        (mJoinPolicy) = ((other.mJoinPolicy));
+//        return *this;
+//    }
+////Move Operator
+//    Party& Party::operator= (Party&& other){
+//        if(mJoinPolicy) delete mJoinPolicy;
+//        mJoinPolicy = other.mJoinPolicy;
+//        other.mJoinPolicy = nullptr;
+//        return *this;
+//    }
+//
 
 
 

@@ -28,9 +28,14 @@ public:
     void addAgent(Agent &agentToBeCopied, int newlyJoinedPartyID);
     static bool isPresent(vector<int> &neighborsList, int num);
 
+    vector<vector<int>> coalitions;
+
 
 private:
     Graph mGraph;
     vector<Agent> mAgents;
+
+
+    int iteration=0;
 
 };

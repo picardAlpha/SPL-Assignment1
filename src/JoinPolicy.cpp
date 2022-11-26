@@ -25,3 +25,7 @@ int LastOfferJoinPolicy::select(Simulation& simulation, vector<int> &offerAgents
 
     return offerAgentsIDList.size()-1;
 }
+
+
+
+

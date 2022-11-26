@@ -29,6 +29,15 @@ public:
     //added
     void addToOffersList(int agentID);
 
+    //Ariel added
+//    virtual ~Party(); //Destructor
+//    Party(const Party &other); //Copy Constructor
+//    Party(Party &&other); //Move Constructor
+//    Party& operator = (const Party& other); //Copy Operator
+//    Party& operator = (Party&& other); //Move Operator
+
+
+
 private:
     int mId;
     string mName;

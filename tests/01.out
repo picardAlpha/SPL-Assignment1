@@ -443,13 +443,6 @@
                     3,
                     2
                 ]
-            },
-            {
-                "mandates": 40,
-                "parties": [
-                    3,
-                    2
-                ]
             }
         ],
         "edges": [
@@ -563,20 +556,6 @@
                 "parties": [
                     3,
                     2
-                ]
-            },
-            {
-                "mandates": 40,
-                "parties": [
-                    3,
-                    2
-                ]
-            },
-            {
-                "mandates": 80,
-                "parties": [
-                    0,
-                    1
                 ]
             }
         ],

@@ -8,16 +8,20 @@ public:
     virtual int select(Simulation& simulation, vector<int>& offerList) {
         return -1;
     }
+
+//    virtual ~JoinPolicy()= default;
+
+
 };
 
 class MandatesJoinPolicy : public JoinPolicy {
 public:
-    virtual int select(Simulation& simulation, vector<int>& offerList) override;
+    int select(Simulation& simulation, vector<int>& offerList) override;
 
 };
 
 class LastOfferJoinPolicy : public JoinPolicy {
 public:
-    virtual int select(Simulation& simulation, vector<int>& offerList) override;
+    int select(Simulation& simulation, vector<int>& offerList) override;
 
 };

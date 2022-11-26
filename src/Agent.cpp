@@ -41,13 +41,15 @@ void Agent::step(Simulation &sim)
 {
     // TODO: implement this method
     // First update you relevant neighbors list. It can only shrink, so you only need to check its members.
-     for(int i=0; i<mRelevantNeighbors.size(); i++){ // NOT ERASING ALREADY OFFERED PARTIES!
+    std::cout << "Agent " << mAgentId << ": UPDATING. Already offered parties are : " ;
+    for(int party : alreadyOffered){
+        std::cout << party << " " ;
+    }
+    std::cout << std::endl;
+
+    for(int i=0; i<mRelevantNeighbors.size(); i++){ // NOT ERASING ALREADY OFFERED PARTIES!
 //         std::cout << "Relevant neighbor no " << i << " is " << mRelevantNeighbors.at(i) <<std::endl;
-         std::cout << "Agent " << mAgentId << ": UPDATING. Already offered parties are : " ;
-         for(int party : alreadyOffered){
-             std::cout << party << " " ;
-         }
-         std::cout << std::endl;
+
          if(sim.getParty(mRelevantNeighbors.at(i)).getState() == Joined ||
              isPresent(alreadyOffered, mRelevantNeighbors.at(i)) ) { //////REVISE!!!
                  mRelevantNeighbors.erase(mRelevantNeighbors.begin()+i);

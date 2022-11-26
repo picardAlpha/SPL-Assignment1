@@ -8,6 +8,8 @@ Simulation::Simulation(Graph graph, vector<Agent> agents) : mGraph(graph), mAgen
 
 void Simulation::step()
 {
+    std::cout<<std::endl;
+    std::cout << "************************* Iteration " << ++iteration << " *************************" <<std::endl;
     // TODO: implement this method
     for(int i=0; i<mGraph.getNumVertices(); i++){
         getGraph().getParty(i).step(*this);
@@ -61,14 +63,9 @@ const vector< vector < int > > Simulation::getPartiesByCoalitions() const
     // TODO: you MUST implement this method for getting proper output, read the documentation above.
 
     // BUG: Coalitions are printed more than once!!!
-    vector<vector<int> > coalitionVector;
-    vector<int> alreadyAddedCoalition;
-    for(int i=0; i<getAgents().size() ; i++){
-        if(!isPresent(alreadyAddedCoalition,getAgents().at(i).mCoalitionNumber))
-           coalitionVector.push_back(getAgents().at(i).mCoalitionMembers);
-        }
 
-    return coalitionVector;
+
+    return coalitions;
     }
 
 
