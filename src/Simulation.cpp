@@ -13,8 +13,8 @@ void Simulation::step()
     // TODO: implement this method
     for(int i=0; i<mGraph.getNumVertices(); i++){
         getGraph().getParty(i).step(*this);
-//        if(shouldTerminate())
-//            break;
+        if(shouldTerminate())
+            break;
     }
 
     for(Agent& agent : mAgents){
