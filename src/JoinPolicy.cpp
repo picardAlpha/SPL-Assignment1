@@ -5,7 +5,7 @@
 
 
 int MandatesJoinPolicy::select(Simulation& simulation, vector<int> &offeringAgentsIDList) {
-    int maxMandates = 0;
+    int maxMandates = -1;
     int maxMandatesIndex = -1;
 
     for(int i=0; i<offeringAgentsIDList.size(); i++){

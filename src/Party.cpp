@@ -31,8 +31,17 @@ void Party::step(Simulation &s)
 {
     // TODO: implement this method
 
+    std::cout << "Party " << mId <<" update: State = "<< mState<<" timer = " << timer <<" I have offers from : " ;
+    for(int offer:offers){
+        std::cout << offer <<" " ;
+
+    }
+    std::cout << std::endl;
+
     switch(mState){
         case Waiting:
+
+            std::cout << "Party no " << mId <<": I'm in waiting state." << std::endl;
             // do nothing, The simulation will change your state to collecting offers when you receive one.
             if(!offers.empty()){
                 timer = 0 ; // BUG : Timer isn't always initialized
@@ -43,16 +52,19 @@ void Party::step(Simulation &s)
                 }
                 std::cout << std::endl;
             }
+            else{
+                std::cout << "I have no offers." << std::endl;
+            }
             break;
         case CollectingOffers:
             timer++;
-            if(timer > 3){
+            if(timer > 2){
                 // choose using joinPolicy and change your state to joined.
-                int agentToAccept = mJoinPolicy->select(s,offers);
-                int agentToAcceptCoalition = s.getAgents().at(agentToAccept).mCoalitionNumber;
-                std::cout << "---- Party " << mId <<": I'm accepting the offer of agent number " << agentToAccept <<std::endl;
-                std::cout << "I have " <<mMandates << " mandates. The offering coalition has " << s.getAgents().at(agentToAccept).mCoalitionMandates <<" mandates. ";
-                s.addAgent(s.getAgents().at(agentToAccept), mId);  // Clones Agent
+                int agentToAcceptIndex = mJoinPolicy->select(s,offers);
+                int agentToAcceptCoalition = s.getAgents().at(offers.at(agentToAcceptIndex)).mCoalitionNumber;
+                std::cout << "---- Party " << mId <<": I'm accepting the offer of agent number " << offers.at(agentToAcceptIndex) <<std::endl;
+                std::cout << "I have " <<mMandates << " mandates. The offering coalition has " << s.getAgents().at(offers.at(agentToAcceptIndex)).mCoalitionMandates <<" mandates. ";
+                s.addAgent(s.getAgents().at(offers.at(agentToAcceptIndex)), mId);  // Clones Agent
                 // add myself to the proper coalition vector
                 s.coalitions.at(agentToAcceptCoalition).push_back(mId);
 
@@ -64,12 +76,13 @@ void Party::step(Simulation &s)
 
                 //TODO : Initialize the new agents relevant neighbors!
                 for(int i=0; i<s.getGraph().getNumVertices(); i++){
-                    if(s.getGraph().getEdgeWeight(s.getAgents().at(s.getAgents().size()-1).getId(),i)>0 && !s.isPresent(s.getAgents().at(s.getAgents().size()-1).alreadyOffered,i)){
+                    if(s.getGraph().getEdgeWeight(s.getAgents().at(s.getAgents().size()-1).getPartyId(),i)>0 && !s.isPresent(s.getAgents().at(s.getAgents().size()-1).alreadyOffered,i)){
                         s.getAgents().at(s.getAgents().size()-1).mRelevantNeighbors.push_back(i);
                     }
 
+
                 }
-                std::cout << "Together we have " << s.getAgents().at(agentToAccept).mCoalitionMandates << " mandates" << std::endl;
+                std::cout << "Together we have " << s.getAgents().at(offers.at(agentToAcceptIndex)).mCoalitionMandates << " mandates" << std::endl;
                 mState = Joined;
 
 
@@ -97,6 +110,10 @@ void Party::step(Simulation &s)
 void Party::addToOffersList(int agentID) {
     offers.push_back(agentID);
 }
+
+    int Party::getPartyID() {
+        return mId;
+    }
 
 
 //Ariel added

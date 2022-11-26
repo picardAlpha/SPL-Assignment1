@@ -313,13 +313,6 @@
                     0,
                     1
                 ]
-            },
-            {
-                "mandates": 50,
-                "parties": [
-                    0,
-                    1
-                ]
             }
         ],
         "edges": [
@@ -399,13 +392,6 @@
                     0,
                     1
                 ]
-            },
-            {
-                "mandates": 50,
-                "parties": [
-                    0,
-                    1
-                ]
             }
         ],
         "edges": [
@@ -479,13 +465,6 @@
             }
         ],
         "coalitions": [
-            {
-                "mandates": 50,
-                "parties": [
-                    0,
-                    1
-                ]
-            },
             {
                 "mandates": 50,
                 "parties": [
@@ -569,21 +548,6 @@
             }
         ],
         "coalitions": [
-            {
-                "mandates": 75,
-                "parties": [
-                    0,
-                    1,
-                    2
-                ]
-            },
-            {
-                "mandates": 50,
-                "parties": [
-                    0,
-                    1
-                ]
-            },
             {
                 "mandates": 75,
                 "parties": [

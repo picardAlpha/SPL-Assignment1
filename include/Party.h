@@ -38,6 +38,8 @@ public:
 
 
 
+    int getPartyID();
+
 private:
     int mId;
     string mName;
@@ -51,5 +53,4 @@ private:
     // Saves the Agents IDs that made an offer to this party by chronological order.
     std::vector<int> offers;
 
-    int getPartyID();
 };
