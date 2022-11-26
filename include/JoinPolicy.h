@@ -9,7 +9,7 @@ public:
         return -1;
     }
 
-//    virtual ~JoinPolicy()= default;
+    virtual ~JoinPolicy()= default;
 
 
 };

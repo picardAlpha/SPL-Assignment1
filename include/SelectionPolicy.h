@@ -10,7 +10,7 @@ public:
         return -1;
     }
 
-//    virtual ~SelectionPolicy() = default;
+    virtual ~SelectionPolicy() = default;
 };
 
 class MandatesSelectionPolicy: public SelectionPolicy{
