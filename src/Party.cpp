@@ -124,32 +124,32 @@ void Party::addToOffersList(int agentID) {
 //
 //
 //    }
-////Copy Constructor
-//    Party::Party(const Party &other){
-//        mId = other.mId;
-//        mName = other.mName;
-//        mMandates = other.mMandates;
-//        mJoinPolicy = other.mJoinPolicy;
-//        mState = other.mState;
-//    }
-////Moving Constructor
+//Copy Constructor
+   Party::Party(const Party &other){
+       mId = other.mId;
+       mName = other.mName;
+       mMandates = other.mMandates;
+       mJoinPolicy = other.mJoinPolicy;
+       mState = other.mState;
+   }
+// //Moving Constructor
 //    Party::Party(Party &&other){
 //        mJoinPolicy = other.mJoinPolicy;
 //        delete other.mJoinPolicy;
 //    }
-////Copy Operator
-//    Party& Party::operator= (const Party& other){
-//        (mJoinPolicy) = ((other.mJoinPolicy));
-//        return *this;
-//    }
-////Move Operator
-//    Party& Party::operator= (Party&& other){
-//        if(mJoinPolicy) delete mJoinPolicy;
-//        mJoinPolicy = other.mJoinPolicy;
-//        other.mJoinPolicy = nullptr;
-//        return *this;
-//    }
-//
+//Copy Operator
+   Party& Party::operator= (const Party& other){
+       (mJoinPolicy) = ((other.mJoinPolicy));
+       return *this;
+   }
+//Move Operator
+   Party& Party::operator= (Party&& other){
+       if(mJoinPolicy) delete mJoinPolicy;
+       mJoinPolicy = other.mJoinPolicy;
+       other.mJoinPolicy = nullptr;
+       return *this;
+   }
+
 
 
 
