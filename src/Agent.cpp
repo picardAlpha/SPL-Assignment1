@@ -47,12 +47,12 @@ void Agent::step(Simulation &sim)
     }
     std::cout << std::endl;
     std::cout << "I'm agent no " << mAgentId << " (party  " << mPartyId << "). My relevant neighbors are : [" ;
-    for(int i=0 ; i<mRelevantNeighbors.size(); i++){
+    for(unsigned int i=0 ; i<mRelevantNeighbors.size(); i++){
         std::cout << mRelevantNeighbors.at(i) << " " ;
     }
     std::cout <<"]"<< std::endl;
 
-    for(int i=0; i<mRelevantNeighbors.size(); i++){ // NOT ERASING ALREADY OFFERED PARTIES!
+    for(unsigned int i=0; i<mRelevantNeighbors.size(); i++){ // NOT ERASING ALREADY OFFERED PARTIES!
 //         std::cout << "Relevant neighbor no " << i << " is " << mRelevantNeighbors.at(i) <<std::endl;
 
          if(sim.getParty(mRelevantNeighbors.at(i)).getState() == Joined ||
@@ -64,7 +64,7 @@ void Agent::step(Simulation &sim)
      }
     if(!mRelevantNeighbors.empty()) {
         std::cout << "I'm agent no " << mAgentId << " (party  " << mPartyId << "). My relevant neighbors are : [" ;
-        for(int i=0 ; i<mRelevantNeighbors.size(); i++){
+        for(unsigned int i=0 ; i<mRelevantNeighbors.size(); i++){
             std::cout << mRelevantNeighbors.at(i) << " " ;
         }
         std::cout <<"]"<< std::endl;
@@ -131,7 +131,7 @@ void Agent::addToRelevantNeighbors(int partyID){
 
 bool Agent::isPresent(vector<int> &alreadyOffered, int num) {
     bool found = false;
-    for(int i=0; i<alreadyOffered.size() && !found;i++){
+    for(unsigned int i=0; i<alreadyOffered.size() && !found;i++){
         if(alreadyOffered.at(i) == num){
             found = true;
         }
@@ -162,11 +162,12 @@ std::vector<int> Agent::getAlreadyOffered() {
 //Copy Constructor
 Agent::Agent(const Agent &other):
 mCoalitionMembers{other.mCoalitionMembers},
+mRelevantNeighbors{},
 mCoalitionMandates{other.mCoalitionMandates},
+alreadyOffered{other.alreadyOffered},
 mAgentId{other.mAgentId},
 mPartyId{other.mPartyId},
 mSelectionPolicy{other.mSelectionPolicy}{
-
 }
 //Moving Constructor // BAD
 //Agent::Agent(Agent &&other){

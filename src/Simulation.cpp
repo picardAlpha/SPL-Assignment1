@@ -29,12 +29,12 @@ bool Simulation::shouldTerminate() const
     //Should add a check if all parties already joined a coalition!!
     bool result = false;
     bool allJoined = true;
-    for(int i=0; i<mAgents.size() && !result; i++){
+    for(unsigned int i=0; i<mAgents.size() && !result; i++){
         if(getAgents().at(i).mCoalitionMandates>60) {
             result = true;
         }
     }
-    for(int i=0; i<getGraph().getNumVertices()  && allJoined ;i++){
+    for(unsigned int i=0; i<getGraph().getNumVertices()  && allJoined ;i++){
         if(getParty(i).getState()!=Joined){
             allJoined=false;
         }
