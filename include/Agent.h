@@ -43,6 +43,14 @@ public:
     std::vector<int> alreadyOffered;
 
 
+//    virtual ~Agent(); //Destructor
+    Agent(const Agent& other); // Copy Constructor
+//    Agent(Agent&& other); //Move Constructur  BAD!!
+    Agent& operator = (const Agent& other); //Copy Operator
+    Agent& operator = (Agent&& other); //Move Operator
+
+
+
 private:
     int mAgentId;
     int mPartyId;
@@ -52,4 +60,3 @@ private:
 
 };
     //Ariel Added
-

@@ -151,5 +151,37 @@ std::vector<int> Agent::getAlreadyOffered() {
 }
 
 
+//ARIEL ADDED
 
+//Destructor
+//Agent::~Agent(){
+//    if(mSelectionPolicy) delete mSelectionPolicy;
+//
+//
+//}
+//Copy Constructor
+Agent::Agent(const Agent &other){
+    mAgentId = other.mAgentId;
+    mPartyId = other.mPartyId;
+    mSelectionPolicy = other.mSelectionPolicy;
+    mCoalitionMandates = other.mCoalitionMandates;
+    mCoalitionMembers=other.mCoalitionMembers;
+}
+//Moving Constructor // BAD
+//Agent::Agent(Agent &&other){
+//    mSelectionPolicy = other.mSelectionPolicy;
+//    delete other.mSelectionPolicy;
+//}
+//Copy Operator
+Agent& Agent::operator = (const Agent& other){
+    (mSelectionPolicy) = ((other.mSelectionPolicy));
+    return *this;
+}
+//Move Operator
+Agent& Agent::operator = (Agent&& other){
+    if(mSelectionPolicy) delete mSelectionPolicy;
+    mSelectionPolicy = other.mSelectionPolicy;
+    other.mSelectionPolicy = nullptr;
+    return *this;
+}
 
