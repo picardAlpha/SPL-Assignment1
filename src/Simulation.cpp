@@ -34,7 +34,7 @@ bool Simulation::shouldTerminate() const
             result = true;
         }
     }
-    for(unsigned int i=0; i<getGraph().getNumVertices()  && allJoined ;i++){
+    for(int i=0; i<getGraph().getNumVertices()  && allJoined ;i++){
         if(getParty(i).getState()!=Joined){
             allJoined=false;
         }
@@ -120,7 +120,7 @@ void Simulation::addAgent(Agent& agentToBeCopied, int newlyJoinedPartyID) {
 
 bool Simulation::isPresent(vector<int> &neighborsList, int num) {
     bool found = false;
-    for (int i = 0; i < neighborsList.size() && !found; i++) {
+    for (unsigned int i = 0; i < neighborsList.size() && !found; i++) {
         if (neighborsList.at(i) == num) {
             found = true;
         }
