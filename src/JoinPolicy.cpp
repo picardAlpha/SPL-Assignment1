@@ -8,7 +8,7 @@ int MandatesJoinPolicy::select(Simulation& simulation, vector<int> &offeringAgen
     int maxMandates = -1;
     int maxMandatesIndex = -1;
 
-    for(int i=0; i<offeringAgentsIDList.size(); i++){
+    for(unsigned int i=0; i<offeringAgentsIDList.size(); i++){
         if(simulation.getAgents().at(offeringAgentsIDList.at(i)).mCoalitionMandates > maxMandates){
             maxMandates = simulation.getAgents().at(offeringAgentsIDList.at(i)).mCoalitionMandates; // ****optimize ** never used warning?
             maxMandatesIndex = i;
