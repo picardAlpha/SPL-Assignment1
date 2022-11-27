@@ -38,7 +38,7 @@ int main(int argc, char **argv)
 //        }
 
 //Initializing coalition vector in simulation.
-    for(int i=0; i< simulation.getAgents().size(); i++ ){
+    for(unsigned int i=0; i< simulation.getAgents().size(); i++ ){
         vector<int> coalition;
         coalition.push_back(simulation.getAgents().at(i).getPartyId());
         simulation.coalitions.push_back(coalition);
@@ -63,7 +63,7 @@ int main(int argc, char **argv)
     vector<json> outPerIter = {Parser::makeJson(simulation)};
 
 
-    for(int i=0; i<simulation.getAgents().size();i++){
+    for(unsigned int i=0; i<simulation.getAgents().size();i++){
         cout << "The relevant neighbors of agent " << i <<" who belongs to party "<< simulation.getAgents().at(i).getPartyId() <<" are:" << endl;
         for(int mRelevantNeighbor : simulation.getAgents().at(i).mRelevantNeighbors)
             cout << mRelevantNeighbor << endl;
