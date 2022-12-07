@@ -33,8 +33,8 @@ public:
 //    virtual ~Party(); //Destructor
     Party(const Party &other); //Copy Constructor
 //    Party(Party &&other); //Move Constructor
-    Party& operator = (const Party& other); //Copy Operator
-    Party& operator = (Party&& other); //Move Operator
+//    Party& operator = (const Party& other); //Copy Operator
+//    Party& operator = (Party&& other); //Move Operator
 
 
 

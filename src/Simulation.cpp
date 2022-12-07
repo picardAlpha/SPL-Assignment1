@@ -29,7 +29,7 @@ bool Simulation::shouldTerminate() const
     //Should add a check if all parties already joined a coalition!!
     bool result = false;
     bool allJoined = true;
-    for(unsigned int i=0; i<mAgents.size() && !result; i++){
+    for(int i=0; i<mAgents.size() && !result; i++){
         if(getAgents().at(i).mCoalitionMandates>60) {
             result = true;
         }
@@ -120,7 +120,7 @@ void Simulation::addAgent(Agent& agentToBeCopied, int newlyJoinedPartyID) {
 
 bool Simulation::isPresent(vector<int> &neighborsList, int num) {
     bool found = false;
-    for (unsigned int i = 0; i < neighborsList.size() && !found; i++) {
+    for (int i = 0; i < neighborsList.size() && !found; i++) {
         if (neighborsList.at(i) == num) {
             found = true;
         }

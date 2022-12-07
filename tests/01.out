@@ -432,16 +432,16 @@
         ],
         "coalitions": [
             {
-                "mandates": 70,
+                "mandates": 50,
                 "parties": [
-                    0,
-                    2
+                    0
                 ]
             },
             {
-                "mandates": 20,
+                "mandates": 40,
                 "parties": [
-                    3
+                    3,
+                    2
                 ]
             }
         ],
@@ -545,17 +545,17 @@
         ],
         "coalitions": [
             {
-                "mandates": 100,
+                "mandates": 50,
                 "parties": [
-                    0,
-                    2,
-                    1
+                    0
                 ]
             },
             {
-                "mandates": 20,
+                "mandates": 70,
                 "parties": [
-                    3
+                    3,
+                    2,
+                    1
                 ]
             }
         ],

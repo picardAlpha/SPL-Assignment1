@@ -14,7 +14,7 @@ int MandatesSelectionPolicy::select(Graph &graph, vector<int> &relevantNeighbors
     int max = 0;
     int maxIndex = -1 ;
 
-    for(unsigned int i=0; i<relevantNeighbors.size(); i++){
+    for(int i=0; i<relevantNeighbors.size(); i++){
         if(graph.getMandates(relevantNeighbors.at(i))>max){
             max = graph.getMandates(relevantNeighbors.at(i));
             maxIndex = i ;
@@ -36,7 +36,7 @@ int EdgeWeightSelectionPolicy::select(Graph &graph, vector<int> &relevantNeighbo
         std :: cout << neighbor << ", " ;
     }
     std::cout<<"]"<<std::endl;
-    for(unsigned int i=0; i<relevantNeighbors.size(); i++){
+    for(int i=0; i<relevantNeighbors.size(); i++){
 //        std::cout << "Iteration " << i << " for finding max edge: Now comparing party " << partyID <<" with party "<< relevantNeighbors.at(i)<<std::endl  ;
         int currEdgeWeight = graph.getEdgeWeight(partyID,relevantNeighbors.at(i));
         if(currEdgeWeight > max){
