@@ -150,6 +150,19 @@ std::vector<int> Agent::getAlreadyOffered() {
     return alreadyOffered;
 }
 
+//Copy Constructor
+Agent::Agent(const Agent& otherAgent):
+        mCoalitionMembers{otherAgent.mCoalitionMembers},
+        mCoalitionNumber{otherAgent.mCoalitionNumber},
+        mCoalitionMandates{otherAgent.mCoalitionMandates},
+        alreadyOffered{otherAgent.alreadyOffered},
+        mAgentId{otherAgent.mAgentId},
+        mPartyId{otherAgent.mPartyId},
+        mSelectionPolicy{otherAgent.mSelectionPolicy}
+{
+
+}
+
 
 
 

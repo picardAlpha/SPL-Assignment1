@@ -42,13 +42,17 @@ public:
     std::vector<int> getAlreadyOffered();
     std::vector<int> alreadyOffered;
 
+    //added
+
+    //Copy constructor
+    Agent (const Agent& other);
+
 
 private:
     int mAgentId;
     int mPartyId;
     SelectionPolicy *mSelectionPolicy;
 
-    //added
 
 };
     //Ariel Added
